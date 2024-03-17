@@ -1,0 +1,15 @@
+{
+  "name": "cleangen",
+  "version": "1.0.0",
+  "description": "Command-Line Interface for Clean Architecture files genaration",
+  "main": "./dist/bin/cleangen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "clean architecture"
+  ],
+  "author": "",
+  "license": "ISC"
+}
