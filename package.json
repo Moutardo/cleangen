@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node ./dist/bin/cleangen.js",
-    "build": "tsc"
+    "build": "tsc",
+    "build:watch": "npm run build && tsc --watch"
   },
   "bin": {
     "cleangen": "./dist/bin/cleangen.js"
@@ -15,7 +16,7 @@
     "cli",
     "clean architecture"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "colorette": "^2.0.20",
     "commander": "^12.0.0",
