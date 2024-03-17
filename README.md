@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div>
   <h1>CleanGen CLI</h1>
   <a href="/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <br>

@@ -1,17 +1,21 @@
-const fs = require('fs');
-const path = require('path');
+import { existsSync, mkdirSync, readFileSync, writeFileSync, cpSync } from "fs";
+import { resolve } from "path";
 
-function buildPath(directory: string, subPath: string, file: string, extension: string) {
-    return path.resolve(directory, subPath, `${file}.${extension}`);
+function resolvePath(directory: string, subPath: string, file: string, extension: string) {
+    return resolve(directory, subPath, `${file}.${extension}`);
+}
+
+function buildPath(paths: string[]) {
+    return resolve(...paths);
 }
 
 function exist(directory: string, subPath: string, file: string, extension: string) {
-    return fs.existsSync(buildPath(directory, subPath, file, extension));
+    return existsSync(resolvePath(directory, subPath, file, extension));
 }
 function createDir(directory: string, subPath: string) {
-    const dirPath = path.resolve(directory, subPath);
-    if (!fs.existsSync(dirPath)) {
-        fs.mkdirSync(dirPath, { recursive: true });
+    const dirPath = resolve(directory, subPath);
+    if (!existsSync(dirPath)) {
+        mkdirSync(dirPath, { recursive: true });
     }
 }
 
@@ -23,12 +27,16 @@ function buildClassName(entity: string) {
     return entity.split("_").map(e => capitalizeFirstLetter(e)).join("");
 }
 function getFileContent(directory: string, entity: string, extension: string) {
-    return fs.readFileSync(buildPath(directory, "domain/entities", entity, extension), 'utf8');
+    return readFileSync(resolvePath(directory, "domain/entities", entity, extension), 'utf8');
 }
 
 function saveFile(directory: string, subPath: string, file: string, extension: string, content: string) {
     createDir(directory, subPath);
-    return fs.writeFileSync(buildPath(directory, subPath, file, extension), content, 'utf8');
+    return writeFileSync(resolvePath(directory, subPath, file, extension), content, 'utf8');
 }
 
-export { exist, getFileContent, buildClassName, saveFile };
+function copyDir(src: string, dest: string, recursive: boolean = false) {
+    return cpSync(src, dest, { recursive: recursive });
+}
+
+export { buildPath, exist, getFileContent, buildClassName, saveFile, copyDir };

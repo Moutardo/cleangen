@@ -62,4 +62,4 @@ export const dart = new Command("dart")
             const { directory, entity, type } = await askForDartOption(options);
             if (await askForDartConfirmation(directory, entity, type)) dart_builder(directory, entity, type);
         }
-    });;
+    });

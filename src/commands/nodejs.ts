@@ -62,4 +62,4 @@ export const nodejs = new Command("nodejs")
             const { directory, entity, type } = await askForJsOption(options);
             if (await askForJsConfirmation(directory, entity, type)) nodejs_builder(directory, entity, type);
         }
-    });;
+    });
